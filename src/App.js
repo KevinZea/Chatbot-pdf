@@ -19,16 +19,15 @@ function App() {
         "role": "user",
         "content": prompt
       }
+      chats.push(obj)
       let array = [...chats]
-      array.push(obj)
-      setChats(array)
       setPrompt('')
       const response = await createChat(prompt)
       let obj2 = {
         "role": "assistant",
         "content": response
       }
-      console.log(obj2)
+      // console.log(obj2)
       array.push(obj2)
       setChats(array)
     }

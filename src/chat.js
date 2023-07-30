@@ -11,19 +11,28 @@ const config = {
     },
 };
 
+let array = []
 export async function createChat(message) {
+    let objUser = 
+        {
+            role: "user",
+            content: "Vas a responder la siguiente pregunta o instruccion en español y unicamente con la información del pdf proporcionado, ademas que si te pregunten alguna información si hay algun enlace a la información referida vas a enviar esos enlaces en tu respuesta, y otra regla es contestar  sin mencionar la palabra " + "documento"  + <br></br> + message,
+        }
+    array.push(objUser)
     const data = {
+        referenceSources: false,
         sourceId: "cha_RIYFEc0Cz7kngC1enNPpr",
-        messages: [
-            {
-                role: "user",
-                content: message,
-            },
-        ],
+        messages: array
     };
 
     try {
         const response = await axios.post("https://api.chatpdf.com/v1/chats/message", data, config)
+        let obj = {
+            "role": "assistant",
+            "content": response.data.content
+        }
+        array.push(obj)
+        console.log(array)
         return response.data.content
     } catch (error) {
         console.log(error)
