@@ -20,7 +20,7 @@ export async function createChat(message) {
         }
     array.push(objUser)
     const data = {
-        referenceSources: false,
+        referenceSources: true,
         sourceId: "cha_RIYFEc0Cz7kngC1enNPpr",
         messages: array
     };
