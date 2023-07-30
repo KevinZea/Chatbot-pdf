@@ -22,6 +22,7 @@ function App() {
       let array = [...chats]
       array.push(obj)
       setChats(array)
+      setPrompt('')
       const response = await createChat(prompt)
       let obj2 = {
         "role": "assistant",
@@ -31,9 +32,8 @@ function App() {
       array.push(obj2)
       setChats(array)
     }
-    setPrompt('')
   }
-  
+
   function Keydownhandle(e) {
     if (e.key === "Enter") {
       sendMessages(e)
@@ -55,22 +55,22 @@ function App() {
             </div>
             <div className='chat-messages'>
               {
-                chats.length >= 1 &&(
+                chats.length >= 1 && (
                   chats.map((c) => {
                     return (
-                      c.role === "assistant" ?(
+                      c.role === "assistant" ? (
                         <div className='chat-asistent'>
                           <span>{c.content}</span>
                         </div>
-                        ):
+                      ) :
                         <div className='chat-user'>
                           <span>{c.content}</span>
                         </div>
-                      )
+                    )
                   })
-                  )
+                )
               }
-              
+
             </div>
             <div className='chat-inputs'>
               <input type='text' value={prompt} onChange={(e) => { promptHandle(e) }} onKeyDown={(e) => { Keydownhandle(e) }}></input>
