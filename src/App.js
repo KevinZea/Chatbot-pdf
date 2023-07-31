@@ -19,18 +19,16 @@ function App() {
         "role": "user",
         "content": prompt
       }
-      chats.push(obj)
-      let array = [...chats]
       setPrompt('')
+      stateChats(obj)
       const response = await createChat(prompt)
-      let obj2 = {
-        "role": "assistant",
-        "content": response
-      }
-      // console.log(obj2)
-      array.push(obj2)
-      setChats(array)
+      stateChats(response)
+      console.log(chats)
     }
+  }
+  function stateChats(obj){
+    chats.push(obj)
+    setChats([...chats])
   }
 
   function Keydownhandle(e) {

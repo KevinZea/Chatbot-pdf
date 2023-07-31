@@ -1,65 +1,109 @@
-import axios from 'axios'
+// [
+//     {
+//         "name": "get_name",
+//         "description": "Obtener el nombre del dueño",
+//         parameters: {
+//             type: "object",
+//             properties: {
+//                 nombre: {
+//                     type: "string",
+//                     description: "el nombre del dueño"
+//                 }
+//             }
+//         }
+//     },
 
-//senviar mensaje
+// ],
 
-const apikey = "sec_GMgMhR0NPthjEO6oGXHV53KUbcFNUJ6t"
-// const axios = require("axios");
-const config = {
-    headers: {
-        "x-api-key": apikey,
-        "Content-Type": "application/json",
+const { Configuration, OpenAIApi } = require("openai");
+const apikey = "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"
+
+const configuration = new Configuration({
+    apiKey: apikey
+});
+const openai = new OpenAIApi(configuration);
+
+let arrayMessages = [
+    { "role": "system", "content": "Tu eres un asistente virtual en español que unicamente brinda informacion de Yerba Buena una ciudad de argentina" },
+]
+const functiosCall = [
+    {
+        "name": "getAsesor",
+        "description": "Informacion de un asesor humano que pueda brindar asesoria de la ciudad de Yerba Buena y su información de contacto",
+        parameters: {
+            type: "object",
+            properties: {}
+        }
     },
-    // responseType: "stream",
-};
-
-let array = []
+    {
+        "name": "getCentrosComerciales",
+        "description": "Informacion de los centros comerciales de la ciudad de yerba buena son sus horarios y la informacion de cada centro comercial",
+        parameters: {
+            type: "object",
+            properties: {}
+        }
+    },
+]
 export async function createChat(message) {
-    let objUser = 
-        {
-            role: "user",
-            content: "Vas a responder la siguiente pregunta o instruccion en español y unicamente con la información del pdf proporcionado, ademas que si te pregunten alguna información si hay algun enlace a la información referida vas a enviar esos enlaces en tu respuesta, y otra regla es contestar  sin mencionar la palabra " + "documento" + "relaciona gastronomia con restaurantes cuando te pregunten"  + <br></br> + message,
-        }
-    array.push(objUser)
-    const data = {
-        // stream: true,
-        referenceSources: false,
-        sourceId: "cha_RIYFEc0Cz7kngC1enNPpr",
-        messages: array
-    };
-
-    try {
-        const response = await axios.post("https://api.chatpdf.com/v1/chats/message", data, config)
-        let obj = {
-            "role": "assistant",
-            "content": response.data.content
-        }
-        array.push(obj)
-        console.log(response)
-        return response.data.content
-    } catch (error) {
-        console.log(error)
-        return error.message
+    let objUser = {
+        role: "user",
+        content: message
     }
-
+    arrayMessages.push(objUser)
+    try {
+        const completion = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo-0613",
+            messages: arrayMessages,
+            functions: functiosCall,
+            function_call: "auto"
+        });
+        console.log(completion)
+        if (completion.data.choices[0].message.content !== null) {
+            return completion.data.choices[0].message
+        }
+        else {
+            let nameFuncion = completion.data.choices[0].message.function_call.name
+            let response = eval(nameFuncion + "()")
+            let objResponse = {
+                role: "assistant",
+                content: response
+            }
+            return objResponse
+        }
+    } catch (error) {
+        return error
+    }
 }
 
-// const { Configuration, OpenAIApi } = require("openai");
-// const apikey = "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"
+function getAsesor() {
+    const response = "El Asesor es un directorio virtual de la ciudad de Yerba Buena. \n" +
+    "Contacto de El Asesor: https://wa.link/at4y25 \n" +
+    "Teléfono: 3815076319 \n"
+    return response   
+}
 
-// const configuration = new Configuration({
-//     apiKey: apikey
-// });
-// const openai = new OpenAIApi(configuration);
+function getCentrosComerciales(){
+    return "Centros comerciales en Yerba Buena: " +
+    "Yerba Buena Shopping " +
+    "Centro comercial: " +
+    "Comercios, gastronomía, supermercado, ropa. " +
+    "Te esperamos todos los días de 8 a 22 hs " +
+    "Locales Comerciales 9:30 a 13:30 y de 17 a 21hs " +
+    "Dirección: Av. Aconquija 1799 - Yerba Buena " +
+    "Sitio web www.yerbabuenashopping.com " +
+    "Cómo llegar: Shopping Yerba Buena " +
+    "Contacto: https://wa.link/tx4lst " +  
+    "*Portal Tucuman " +
+    "Portal Tucumán Shopping es el shopping más importante de Tucumán. Cuenta con " +
+    "cocheras de fácil acceso, más de 90 locales con las marcas más importantes, Patio de " +
+    "Comidas, Cines y entretenimientos. Además en Portal Tucumán podrá disfrutar de un " +
+    "Hipermercado Jumbo e Easy " +
+    "HORARIOS: ESTAMOS ABIERTOS TODOS LOS DÍAS DE 10 A 22 HS. PATIO DE " +
+    "COMIDAS: Domingos a Jueves: 8 A 00 HS / Viernes, Sábado y vísperas de feriado y " +
+    "feriados: 8 A 01 HS " +
+    "Sitio web: Portal Tucumán " +
+    "Cómo llegar: Portal Tucumán"
+}
 
-// export async function createChat(message) {
-//     try {
-//         const completion = await openai.createChatCompletion({
-//             model: "gpt-3.5-turbo",
-//             messages: [{ "role": "system", "content": "Tu eres un asistente virtual." }, { role: "user", content: message }],
-//         });
-//         return completion.data.choices[0].message
-//     } catch (error) {
-//         return error
-//     }
-// }
-// // console.log(completion.data.choices[0].message);
+
+// console.log(completion.data.choices[0].message);
