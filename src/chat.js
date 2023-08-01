@@ -296,6 +296,7 @@ export async function createChat(message) {
         });
         // console.log(completion)
         if (completion.data.choices[0].message.content !== null) {
+            arrayMessages.push(completion.data.choices[0].message)
             return completion.data.choices[0].message
         }
         else {
@@ -306,6 +307,7 @@ export async function createChat(message) {
                     role: "assistant",
                     content: response
                 }
+                arrayMessages.push(objResponse)
                 return objResponse
             }
             else {
@@ -316,6 +318,7 @@ export async function createChat(message) {
                     role: "assistant",
                     content: response
                 }
+                arrayMessages.push(objResponse)
                 return objResponse
             }
 
