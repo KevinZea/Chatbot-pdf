@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import './App.css';
 import { createChat } from './chat';
+import LinkRenderer from './LinkRenderer/LinkRenderer';
 
 function App() {
   const [display, setDisplay] = useState(true)
@@ -23,10 +24,10 @@ function App() {
       stateChats(obj)
       const response = await createChat(prompt)
       stateChats(response)
-      console.log(chats)
+      // console.log(chats)
     }
   }
-  function stateChats(obj){
+  function stateChats(obj) {
     chats.push(obj)
     setChats([...chats])
   }
@@ -35,6 +36,10 @@ function App() {
     if (e.key === "Enter") {
       sendMessages(e)
     }
+  }
+  function extractLinks(str) {
+    const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g;
+    return str.match(regex) || [];
   }
 
   return (
@@ -57,7 +62,7 @@ function App() {
                     return (
                       c.role === "assistant" ? (
                         <div className='chat-asistent'>
-                          <span>{c.content}</span>
+                          <span><LinkRenderer text={c.content}/></span>
                         </div>
                       ) :
                         <div className='chat-user'>
