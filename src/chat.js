@@ -57,6 +57,19 @@ const functiosCall = [
         }
     },
     {
+        "name": "preguntasComida",
+        "description": "En caso de que pregunten por alguna comida en especifica de la ciudad de yerba buena",
+        parameters: {
+            type: "object",
+            properties: {
+                comida: {
+                    type: "string",
+                    description: "nombre de la comida o pregunta muy especifica acerca de la gastronomia y comida de yerba buena"
+                }
+            }
+        }
+    },
+    {
         "name": "getRestaurants",
         "description": "Informacion de los sitios de gastronomia o restaurantes para comer y disfrutar de la ciudad de yerba buena esta la informacion de sus horarios y la informacion de cada sitio en especial",
         parameters: {
@@ -280,6 +293,7 @@ const functiosCall = [
             properties: {}
         }
     },
+    
 ]
 export async function createChat(message) {
     let objUser = {
@@ -313,13 +327,18 @@ export async function createChat(message) {
             else {
                 let nameFuncion = completion.data.choices[0].message.function_call.name
                 let palabraFuncion = nameFuncion.concat("(" + completion.data.choices[0].message.function_call.arguments + ")")
-                let response = eval(palabraFuncion)
-                let objResponse = {
-                    role: "assistant",
-                    content: response
+                let response = await eval(palabraFuncion)
+                if (typeof(response) === 'string'){
+                    let objResponse = {
+                        role: "assistant",
+                        content: response
+                    }
+                    arrayMessages.push(objResponse)
+                    return objResponse
                 }
-                arrayMessages.push(objResponse)
-                return objResponse
+                else{
+                    return response
+                }
             }
 
         }
@@ -347,7 +366,7 @@ function getCentrosComerciales() {
     Te esperamos todos los días de 8 a 22 hs
     Locales Comerciales 9:30 a 13:30 y de 17 a 21hs
     Dirección: Av. Aconquija 1799 - Yerba Buena
-    Sitio web www.yerbabuenashopping.com
+    Sitio web https://www.yerbabuenashopping.com
     Cómo llegar: Shopping Yerba Buena
     Contacto: https://wa.link/tx4lst
     
@@ -374,7 +393,7 @@ function getCentroComercial(name) {
         Te esperamos todos los días de 8 a 22 hs
         Locales Comerciales 9:30 a 13:30 y de 17 a 21hs
         Dirección: Av. Aconquija 1799 - Yerba Buena
-        Sitio web www.yerbabuenashopping.com
+        Sitio web https://www.yerbabuenashopping.com
         Cómo llegar: Shopping Yerba Buena
         Contacto: https://wa.link/tx4lst
         `;
@@ -633,7 +652,7 @@ function getBellezas() {
     En ambas sedes brindamos los servicios de Radiología, Mamografía, Densitometría,
     Tomografía, Resonancia y Ecografía.
     Horario de atención: de lunes a viernes de 7 a 22 hs y sábado de 8 a 12hs
-    WEB: www.mendezcollado.com
+    WEB: https://www.mendezcollado.com
     Contacto: https://wa.link/at4y25
 
     *Summer Solarium
@@ -674,7 +693,7 @@ function getBelleza(name) {
         En ambas sedes brindamos los servicios de Radiología, Mamografía, Densitometría,
         Tomografía, Resonancia y Ecografía.
         Horario de atención: de lunes a viernes de 7 a 22 hs y sábado de 8 a 12hs
-        WEB: www.mendezcollado.com
+        WEB: https://www.mendezcollado.com
         Contacto: https://wa.link/at4y25
         
         `
@@ -1469,4 +1488,11 @@ function informacionSanJavier(){
     E-mail: consultas@imanay.com.ar
     Sitio web oficial con información de San Javier: https://www.sanjavierturismo.com.ar/
     `
+}
+
+async function preguntasComida(comida){
+    const infoComida = getRestaurants()
+    let pregunta = "Segun Esta informacion " +infoComida + " como responderias la siguiente sentencia: " + comida
+    let response = await createChat(pregunta)
+    return response
 }
