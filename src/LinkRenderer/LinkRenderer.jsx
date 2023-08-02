@@ -2,7 +2,7 @@ import React from 'react';
 
 const LinkRenderer = ({ text }) => {
   const renderTextWithLinks = () => {
-    const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g;
+    const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?|www\.[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/gi;
     const parts = text.split(' ');
     return parts.map((part, index) => {
       if (regex.test(part)) {

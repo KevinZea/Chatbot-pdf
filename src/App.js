@@ -37,10 +37,7 @@ function App() {
       sendMessages(e)
     }
   }
-  function extractLinks(str) {
-    const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g;
-    return str.match(regex) || [];
-  }
+  
 
   return (
     <div className='app'>
