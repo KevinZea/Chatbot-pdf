@@ -20,16 +20,16 @@ export async function createChat(question) {
         for(let obj of arrayContext){
             context = context.concat(obj.text)
         }
-        
+        console.log(context)
         let arrayMessages =[{role: "system", content: context}]
         let user = {role: "user", content: question}
         arrayMessages.push(user)
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            max_tokens: 150,
+            max_tokens: 200,
             messages: arrayMessages,
             // context: context,
-            temperature:0
+            temperature:0.5
             
             
         });
