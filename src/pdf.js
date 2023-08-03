@@ -234,15 +234,15 @@ La Máquina cafetera (Italiana) que tienen en el café Danubio, es la más antig
 bar también cuenta con mesas de Billar, Billar Pool, diferentes juegos de cartas y dominos.
 Quieres más info de Salento?
 Descargar mapa de Salento:
-MAPA TURÍSTICO SALENTO 2023 FINAL.pdf
+https://drive.google.com/file/d/1pcruukt5qCRNWC0E0yM3m7SwqOCTdzSl/view
 Descarga la Guia Salento Oculto:
-Guía Salento Oculto 2023 ANATO.pdf
+https://drive.google.com/file/d/14Hql7iP6ygmZCKE-t2EOdJ-VqfMYiAEK/view
 Información Oficial de la alcaldía de Salento:
 PIT Salento: Los Puntos de Información Turística (PIT) son un espacio que brinda de manera
 gratuita y especializada información a visitantes nacionales y extranjeros sobre Salento y la
 región, con el fin de orientar, facilitar y atender sus necesidades, dando a conocer nuestros
 productos y atractivos turísticos.
-Sitio web con información oficial de Salento: PIT SALENTO
+Sitio web con información oficial de Salento: http://pitsalento.blogspot.com/
 *RESERVA NATURAL DEL ALTO QUINDÍO – ACAIME (FUNDACIÓN HERENCIA VERDE)
 UBICACIÓN: Vereda Cocora - Parte alta del municipio:
 Esta reserva natural está ubicada entre las áreas de La Montaña y Estrella de Agua (CRQ) sobre
@@ -448,9 +448,9 @@ ATENCIÓN EN LÍNEA: 24 Hrs
 E-MAIL:
 puntoinformacionturistica@salento-quindio.gov.co
 *BLOG OFICIAL:
-PIT SALENTO
+http://pitsalento.blogspot.com/
 *SITIO INSTITUCIONAL:
-Alcaldía Municipal de Salento Quindío
+http://www.salento-quindio.gov.co/
 Salento, Quindio, Colombia
 Información comercial y guía turística: ¿Dónde dormir en Salento?. ¿Dónde comer en
 Salento?. ¿Qué hacer en Salento?. ¿Que conocer en Salento?. Recomendaciones turísticas
@@ -465,7 +465,7 @@ personas y Habitación para familia de 5 personas.
 Precios desde 50.000 pesos colombianos.
 WhatsApp:https://wa.link/nysy6v
 Instagram: https://instagram.com/hostal_dondechaleco?igshid=NjIwNzIyMDk2Mg==
-Ubicación: Hostal Palmas de Cocora (Dónde Chaleco)
+Ubicación: https://goo.gl/maps/777P2Nb8CYqtxM1P6
 Fotos y más info del Hostal: https://citybot.info/alojamientos/hostal-palmas-de-cocora/
 *Hospedajes Tourist Information Salento
 Agencia donde puedes encontrar una variedad de hoteles, hostales y apartamentos
@@ -473,7 +473,7 @@ privados.
 Telefono: 3012969551
 WhatsApp https://wa.link/ribx7p
 Instagram: https://instagram.com/turismo_salento?igshid=NjIwNzIyMDk2Mg==
-Ubicación: Tourist Information - Tours en Motocicleta
+Ubicación: https://goo.gl/maps/c27rNhECLeBRfc7Q8
 Experiencias, tours y excursiones en Salento:
 *Empresa Tourist Information Salento.
 Agencia de Turismo, guías de turismo. Venta de tours. Información Turística, excursiones,
@@ -483,7 +483,7 @@ tours. Tours en Motocicleta. Tours al valle del Cocora.
 Telefono: 3012969551
 WhatsApp https://wa.link/ribx7p
 Instagram: https://instagram.com/turismo_salento?igshid=NjIwNzIyMDk2Mg==
-Ubicación: Tourist Information - Tours en Motocicleta
+Ubicación: https://goo.gl/maps/c27rNhECLeBRfc7Q8
 Salidas nocturnas en Salento: Que hacer en la noche en salento? Donde salir en
 salento?. bares y salidas nocturnas en Salento.
 *Jumanji Bar
@@ -509,7 +509,7 @@ Viernes y Sábado de 12 PM a 2.30 AM
 Domingos de 12 PM a 12 AM
 WhatsAPP: https://wa.link/n3vptm
 Instagram: https://instagram.com/jumanjisalento?igshid=NjIwNzIyMDk2Mg==9
-Ubicación: Jumanji
+Ubicación: https://goo.gl/maps/QkZ169QeGfno3wjp6
 Foto y más información: https://citybot.info/comercio/jumanji-bar-restaurante/
 
 `
