@@ -5,12 +5,9 @@ import { createChat } from './chat';
 import LinkRenderer from './LinkRenderer/LinkRenderer';
 
 function App() {
-  const [display, setDisplay] = useState(true)
   const [chats, setChats] = useState([])
   const [prompt, setPrompt] = useState('')
-  function ondisplay() {
-    setDisplay(!display)
-  }
+
   function promptHandle(e) {
     setPrompt(e.target.value)
   }
@@ -37,55 +34,79 @@ function App() {
       sendMessages(e)
     }
   }
-  
+
 
   return (
     <div className='app'>
-      <div className='title-page'>
-        <h1>This Chatbot with gpt</h1>
-      </div>
+      <nav className='navbar'>
+        <h1>Citybot</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+          <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+          <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
+        </svg>
+      </nav>
       <div className='chat'>
-        <div className='chat-center'>
-          <div className={display === true ? 'nodisplay' : 'chat-window'}>
-            <div className='chat-icons'>
-              <button onClick={(e) => { ondisplay(e) }}>
-                X
-              </button>
+        <div className='chat-baner'>
+          <div className='chat-baner-icon'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+              <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+              <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
+            </svg>
+          </div>
+          <div className='chat-baner-info'>
+            <span>
+              ¡Bienvenido a Citybot!
+            </span>
+            <p>
+              Descubre lo mejor de cada ciudad con Citybot: tu asistente virtual de recomendaciones turísticas
+              <br></br>
+              <br></br>
+              Puedes iniciar una conversación o probar los siguientes ejemplos:
+            </p>
+            <div className='chat-baner-info-buttons'>
+              <button>¿Qué es la feria sabor a mi?</button>
+              <button>¿Cómo llegar a Salento?</button>
+              <button>¿Qué puedo hacer en Santa Rosa?</button>
             </div>
-            <div className='chat-messages'>
-              {
-                chats.length >= 1 && (
-                  chats.map((c) => {
-                    return (
-                      c.role === "assistant" ? (
-                        <div className='chat-asistent'>
-                          <span><LinkRenderer text={c.content}/></span>
-                        </div>
-                      ) :
-                        <div className='chat-user'>
-                          <span>{c.content}</span>
-                        </div>
-                    )
-                  })
-                )
-              }
 
-            </div>
-            <div className='chat-inputs'>
-              <input type='text' value={prompt} onChange={(e) => { promptHandle(e) }} onKeyDown={(e) => { Keydownhandle(e) }}></input>
-              <button onClick={(e) => { sendMessages(e) }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
-        <div className='button-chat'>
-          <button onClick={(e) => { ondisplay(e) }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
-              <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-              <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z" />
+        <div className='chat-messages'>
+          {
+            chats.length >= 1 && (
+              chats.map((c) => {
+                return (
+                  c.role === "assistant" ? (
+                    <div className='chat-asistent'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+                        <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                        <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
+                      </svg>
+                      <span><LinkRenderer text={c.content} /></span>
+                    </div>
+                  ) :
+                    <div className='chat-user'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                      </svg>
+                      <span>{c.content}</span>
+                    </div>
+                )
+              })
+            )
+          }
+        </div>
+        <div className='chat-input'>
+          <input type='text'
+            placeholder='Préguntale a Citybot...'
+            onChange={(e) => { promptHandle(e) }}
+            value={prompt}
+            onKeyDown={(e) => { Keydownhandle(e) }}
+          >
+          </input>
+          <button onClick={(e) => { sendMessages(e) }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+              <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
             </svg>
           </button>
         </div>

@@ -13,24 +13,28 @@ export async function createChat(question) {
         let context = `
             Responde la siguiente pregunta basado en el contexto de abajo
             y si no puedes responder la pregunta basado en el contexto
-            vas a decir lo siento no tengo conocimiento en tu informacion
+            vas a decir Lo siento no tengo conocimiento en tu informacion
+            Nota: si te saludan solo responde el saludo
             
         `
         for(let obj of arrayContext){
             context = context.concat(obj.text)
         }
-        console.log(context)
-        // let arrayMessages =[{role: "system", content: "context"}, {role: "user", content: question}]
-        const completion = await openai.createCompletion({
-            model: 'text-davinci-003',
+        
+        let arrayMessages =[{role: "system", content: context}]
+        let user = {role: "user", content: question}
+        arrayMessages.push(user)
+        const completion = await openai.createChatCompletion({
+            model: 'gpt-3.5-turbo',
             max_tokens: 150,
-            prompt: context.concat(question),
+            messages: arrayMessages,
             // context: context,
-            temperature: 0
+            temperature:0
             
             
         });
-        const message = completion.data.choices[0].text;
+        const message = completion.data.choices[0].message.content
+
         let objAssitant = {
             role: "assistant",
             content: message
