@@ -26,7 +26,7 @@ export async function createChat(question) {
         arrayMessages.push(user)
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            max_tokens: 200,
+            max_tokens: 250,
             messages: arrayMessages,
             // context: context,
             temperature:0.5

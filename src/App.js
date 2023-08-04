@@ -64,9 +64,15 @@ function App() {
               Puedes iniciar una conversación o probar los siguientes ejemplos:
             </p>
             <div className='chat-baner-info-buttons'>
-              <button>¿Qué es la feria sabor a mi?</button>
-              <button>¿Cómo llegar a Salento?</button>
-              <button>¿Qué puedo hacer en Santa Rosa?</button>
+              <button onClick={(e) => {setPrompt("¿Qué hoteles hay en Salento?")}}>
+                ¿Qué hoteles hay en Salento?
+                </button>
+              <button onClick={(e) => {setPrompt("¿Cómo llegar a Salento?")}}>
+                ¿Cómo llegar a Salento?
+                </button>
+              <button onClick={(e) => {setPrompt("¿Qué puedo hacer en Salento?")}}>
+                ¿Qué puedo hacer en Salento?
+                </button>
             </div>
 
           </div>
