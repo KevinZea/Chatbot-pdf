@@ -67,10 +67,10 @@ function App() {
               <button onClick={(e) => {setPrompt("¿Qué hoteles hay en Salento?")}}>
                 ¿Qué hoteles hay en Salento?
                 </button>
-              <button onClick={(e) => {setPrompt("¿Cómo llegar a Salento?")}}>
-                ¿Cómo llegar a Salento?
+              <button onClick={(e) => {setPrompt("¿Que hoteles hay en salento?")}}>
+                ¿Que gastronomia hay en Salento?
                 </button>
-              <button onClick={(e) => {setPrompt("¿Qué puedo hacer en Salento?")}}>
+              <button onClick={(e) => {setPrompt("¿Que gastronomia hay en Salento?")}}>
                 ¿Qué puedo hacer en Salento?
                 </button>
             </div>
