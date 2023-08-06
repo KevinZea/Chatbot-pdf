@@ -9,7 +9,7 @@ const LinkRenderer = ({ text }) => {
         part = part.replace(/"/g, '')
         return (
           <a key={index} href={part} target="_blank" rel="noopener noreferrer">
-            {part}
+            Click {" "}
           </a>
         );
       } else {

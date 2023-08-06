@@ -93,7 +93,13 @@ body{
     width: 100%;
   }
   .chat-messages{
-    height: 450px;
+    height: 55%;
     background-color: white;
+  }
+  .chat-baner{
+    height: max-content;
+  }
+  .chat-baner-info-buttons{
+    display: flex;
   }
 }

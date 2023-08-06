@@ -11,8 +11,9 @@ export async function createChat(question) {
     try {
         const arrayContext = await searchReviews(embeddingsArray, question)
         let context = `
-            Responde la siguiente pregunta basado en el contexto de abajo
+            Responde la siguiente pregunta basado en el siguiente contexto
             y respondiendo con toda la informacion de contacto que haya
+            de manera organizada (si hay palabras que empiecen con * separala)
             y si no puedes responder la pregunta basado en el contexto
             vas a decir Lo siento no tengo conocimiento en tu informacion
             Nota: si te saludan solo responde el saludo
@@ -27,20 +28,14 @@ export async function createChat(question) {
         arrayMessages.push(user)
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            max_tokens: 350,
             messages: arrayMessages,
-            // context: context,
             temperature:0
             
             
         });
-        const message = completion.data.choices[0].message.content
+        const message = completion.data.choices[0].message
 
-        let objAssitant = {
-            role: "assistant",
-            content: message
-        }
-        return objAssitant
+        return message
     } catch (error) {
         console.error(error);
     }
