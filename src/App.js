@@ -19,8 +19,12 @@ function App() {
       }
       setPrompt('')
       stateChats(obj)
+      stateChats({role: "assistant", content: "...Pensando..."})
       const response = await createChat(prompt)
+      chats.pop()
+      setChats([...chats])
       stateChats(response)
+      
       // console.log(chats)
     }
   }
@@ -67,11 +71,11 @@ function App() {
               <button onClick={(e) => {setPrompt("¿Qué hoteles hay en Salento?")}}>
                 ¿Qué hoteles hay en Salento?
                 </button>
-              <button onClick={(e) => {setPrompt("¿Que gastronomia hay en Salento?")}}>
-                ¿Que gastronomia hay en Salento?
+              <button onClick={(e) => {setPrompt("¿Que gastronomia hay en Pereira?")}}>
+                ¿Que gastronomia hay en Pereira?
                 </button>
-              <button onClick={(e) => {setPrompt("¿Qué puedo hacer en Salento?")}}>
-                ¿Qué puedo hacer en Salento?
+              <button onClick={(e) => {setPrompt("¿Qué puedo hacer en Quindio?")}}>
+                ¿Qué puedo hacer en Quindio?
                 </button>
             </div>
 
