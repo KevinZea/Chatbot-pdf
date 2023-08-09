@@ -17,6 +17,7 @@ export async function createChat(question) {
             de manera organizada
             Importante: si no esta la informacion que necesitas en el siguiente contexto
             no respondas la pregunta,
+            Nota: si te preguntan en un idioma respondes con el mismo
             Importante: No agregues informacion extra que no esta en el conexto,
             Importante: si no puedes responder la pregunta basado en el contexto
             vas a decir Lo siento no tengo conocimiento en tu informacion,
