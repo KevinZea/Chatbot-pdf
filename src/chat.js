@@ -1,28 +1,24 @@
 const { Configuration, OpenAIApi } = require("openai");
 const apikey = "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"
-const salento = require('./salento.json');
-const pereira = require('./pereira.json')
-const sonson = require('./sonson.json')
-const quindio = require('./quindio.json')
-const risaralda = require('./risaralda.json')
-const cafetero = require('./cafetero.json')
-const pueblos = require('./pueblos.json')
+const embeddingsArray = require('./doc.json')
 const configuration = new Configuration({
     apiKey: apikey,
 });
 const openai = new OpenAIApi(configuration);
 
-let embeddingsArray = []
 export async function createChat(question) {
     try {
         let arrayContext = await searchReviews(question)
         let context = `
             Eres un asesor virtual de turismo
-            Responde la siguiente pregunta basado en el siguiente contexto
+            Responde la siguiente pregunta basado solo en el siguiente contexto
             y respondiendo con toda la informacion de contacto que haya
             de manera organizada
+            Importante: si no esta la informacion que necesitas en el siguiente contexto
+            no respondas la pregunta,
+            Importante: No agregues informacion extra que no esta en el conexto,
             Importante: si no puedes responder la pregunta basado en el contexto
-            vas a decir Lo siento no tengo conocimiento en tu informacion, trata de ser mas especifico
+            vas a decir Lo siento no tengo conocimiento en tu informacion,
             Nota: si te saludan solo responde el saludo
             
         `
@@ -78,29 +74,6 @@ async function getEmbedding(text) {
 }
 // responde con un arreglo los resultados mas parecidos
 async function searchReviews(question, n = 3) {
-    const includesCity = question.toLowerCase().trim()
-    if (includesCity.includes("salento")) {
-        embeddingsArray = [...salento]
-    }
-    else if (includesCity.includes("pereira")) {
-        embeddingsArray = [...pereira]
-    }
-    else if (includesCity.includes("sonson") || includesCity.includes("sonsón")){
-        embeddingsArray = [...sonson]
-    }
-    else if(includesCity.includes("quindio")){
-        embeddingsArray = [...quindio]
-        n = 1
-    }
-    else if(includesCity.includes("risaralda")){
-        embeddingsArray = [...risaralda]
-    }
-    else if(includesCity.includes("cafetero")){
-        embeddingsArray = [...cafetero]
-    }
-    else if(includesCity.includes("patrimonio cultural")){
-        embeddingsArray = [...pueblos]
-    }
     
     const embedding = await getEmbedding(question);
     embeddingsArray.forEach(obj => {
