@@ -5,12 +5,13 @@ const configuration = new Configuration({
     apiKey: apikey,
 });
 const openai = new OpenAIApi(configuration);
+let arrayMessages = [{ role: "system", content: '' }]
 
 export async function createChat(question) {
     try {
         let arrayContext = await searchReviews(question)
         let context = `
-            Eres un asesor virtual de turismo
+            Eres un asesor virtual de turismo (multi-lingue)
             Responde la siguiente pregunta basado solo en el siguiente contexto
             y respondiendo con toda la informacion de contacto que haya
             de manera organizada
@@ -25,10 +26,14 @@ export async function createChat(question) {
         for (let obj of arrayContext) {
             context = context.concat(obj.text + "\n")
         }
-        let arrayMessages = [{ role: "system", content: context }]
+        for(let msg of arrayMessages){
+            if (msg.role === "system"){
+                msg.content = context
+            }
+        }
         let user = { role: "user", content: question }
         arrayMessages.push(user)
-        console.log(context)
+        // console.log(context)
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo', //-0613
             messages: arrayMessages,
@@ -38,6 +43,7 @@ export async function createChat(question) {
         });
         const message = completion.data.choices[0].message
         arrayMessages.push(message)
+        // console.log(arrayMessages)
         return message
 
     } catch (error) {
