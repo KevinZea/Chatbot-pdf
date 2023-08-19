@@ -5,7 +5,8 @@ const configuration = new Configuration({
     apiKey: apikey,
 });
 const openai = new OpenAIApi(configuration);
-let arrayMessages = [{ role: "system", content: '' }]
+
+let arrayMessages = []
 
 export async function createChat(question) {
     try {
@@ -24,17 +25,18 @@ export async function createChat(question) {
             Nota: si te saludan solo responde el saludo
             
         `
+
         for (let obj of arrayContext) {
             context = context.concat(obj.text + "\n")
         }
-        for(let msg of arrayMessages){
-            if (msg.role === "system"){
-                msg.content = context
-            }
-        }
+
+        let system = { role: "system", content: context }
         let user = { role: "user", content: question }
+        arrayMessages.push(system)
         arrayMessages.push(user)
-        // console.log(context)
+        for(let c of arrayMessages){
+            if (c.role == "system") console.log(c.content)
+        }
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo', //-0613
             messages: arrayMessages,
@@ -80,8 +82,8 @@ async function getEmbedding(text) {
     return response.data.data[0].embedding;
 }
 // responde con un arreglo los resultados mas parecidos
-async function searchReviews(question, n = 3) {
-    
+async function searchReviews(question, n = 5) {
+
     const embedding = await getEmbedding(question);
     embeddingsArray.forEach(obj => {
         obj.similarity = cosineSimilarity(obj.embeddings, embedding);

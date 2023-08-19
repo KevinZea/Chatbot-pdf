@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 import { createChat } from './chat';
 import LinkRenderer from './LinkRenderer/LinkRenderer';
+import AddToHomeScreenButton from './AddToHomeScreenButton/AddToHomeScreenButton';
 
 function App() {
   const [chats, setChats] = useState([])
@@ -122,6 +123,7 @@ function App() {
         </div>
 
       </div>
+      <AddToHomeScreenButton/>
     </div>
 
   );
