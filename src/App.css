@@ -1,5 +1,16 @@
+@font-face{
+  font-family: 'pippins';
+  src: url('./fonts/poppins/Poppins-Bold.ttf') format('truetype');
+  src: url('./fonts/poppins/Poppins-Light.ttf') format('truetype');
+  /* src: url('./fonts/poppins/Poppins-Medium.ttf') format('truetype'); */
+  /* src: url('./fonts/poppins/Poppins-Regular.ttf') format('truetype'); */
+  /* src: url('./fonts/poppins/Poppins-SemiBold.ttf') format('truetype'); */
+}
 body{
   background-color: #e6e6e6;
+}
+*{
+  font-family: 'pippins' !important;
 }
 .navbar{
   display: flex;

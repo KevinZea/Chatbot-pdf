@@ -32,11 +32,18 @@ export async function createChat(question) {
 
         let system = { role: "system", content: context }
         let user = { role: "user", content: question }
+
+        for (let i = 0; i<arrayMessages.length; i++){
+            if(arrayMessages[i].role === "system"){
+                arrayMessages.splice(i, 1)
+            }
+        }
+
         arrayMessages.push(system)
         arrayMessages.push(user)
-        for(let c of arrayMessages){
-            if (c.role == "system") console.log(c.content)
-        }
+        // for(let c of arrayMessages){
+        //     if (c.role == "system") console.log(c.content)
+        // }
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo', //-0613
             messages: arrayMessages,
