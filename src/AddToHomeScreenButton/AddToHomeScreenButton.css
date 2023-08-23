@@ -24,6 +24,9 @@
 
 .add-button {
     display: block;
+    margin: auto;
+    border-radius: 15px;
+    padding: 5px;
     margin-top: 20px;
 }
 .add-button:hover{

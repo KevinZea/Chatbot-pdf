@@ -1,29 +1,38 @@
 import React from 'react';
+import './LinkRenderer.css'
 
 const LinkRenderer = ({ text }) => {
   const renderTextWithLinks = () => {
     const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?|www\.[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/gi;
     let arrayText = []
-    if (text.includes("\n")){
-      const parts = text.split('\n');
+    const parts = text.split('\n');
       for (let parte of parts){
-          parte = parte + "\n"
+          parte = parte + '\n'
           let aux = parte.split(' ')
           for (let a of aux){
             arrayText.push(a)
           }
       }
-    }
-    else {
-      arrayText = text.split(' ')
-    }
+    // if (text.includes("\n")){
+    //   const parts = text.split('\n');
+    //   for (let parte of parts){
+    //       parte = parte + '\n'
+    //       let aux = parte.split(' ')
+    //       for (let a of aux){
+    //         arrayText.push(a)
+    //       }
+    //   }
+    // }
+    // else {
+    //   arrayText = text.split(' ')
+    // }
 
     return arrayText.map((part, index) => {
 
       if (regex.test(part)) {
         part = part.replace(/"/g, '')
         return (
-          <a key={index} href={part} target="_blank" rel="noopener noreferrer">
+          <a key={index} href={part} target="_blank" rel="noopener noreferrer" className='enlaces'>
             Click {" "}
           </a>
         );

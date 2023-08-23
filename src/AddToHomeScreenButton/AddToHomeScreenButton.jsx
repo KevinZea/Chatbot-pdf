@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AddToHomeScreenButton.css';
+import logo from '../resources/logo.png'
 
 const AddToHomeScreenButton = () => {
   const [prompt, setPrompt] = useState(null);
@@ -41,7 +42,10 @@ const AddToHomeScreenButton = () => {
           <button className="close-button" onClick={handleClose}>
             X
           </button>
-          <p>Agrega tu Citybot a tu pantalla de inicio</p>
+          <p>Agrega Citybot 
+          <img src={logo} alt="" srcset="" width={20} height={20}/>
+          a tu pantalla de inicio.
+          </p>
           <button className="add-button" onClick={handleClick}>
             Agregar
           </button>
