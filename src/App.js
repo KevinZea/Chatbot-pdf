@@ -49,61 +49,66 @@ function App() {
         <img src={logo} width={30} height={30}></img>
       </nav>
       <div className='chat'>
-        <div className='chat-baner'>
-          <div className='chat-baner-icon'>
-            <img src={logo} width={30} height={30}></img>
+        {chats.length < 1 ? (
+          <div className='chat-baner'>
+            <div className='chat-baner-icon'>
+              <img src={logo} width={30} height={30}></img>
 
-          </div>
-          {chats.length < 1 ? (
+            </div>
             <div className='chat-baner-info'>
               <span>
-                ¡Bienvenido a Citybot!
+                ¡Bienvenido a CityBot!
               </span>
               <p>
-                Descubre lo mejor de cada ciudad con Citybot: tu asistente virtual de recomendaciones turísticas
+                Tu asistente virtual de viajes.
+                Aquí encontrarás recomendaciones sobre hotelería, gastronomía, destinos y mucho más.
+                También puedes ingresar a nuestra guia web <a href='https://citybot.info/' target='_blank'>https://citybot.info/</a>
                 <br></br>
+                <br></br>
+                Recuerda hacer preguntas de manera exacta e indicando siempre el destino.
                 <br></br>
                 Puedes iniciar una conversación o probar los siguientes ejemplos:
               </p>
               <div className='chat-baner-info-buttons'>
-                <button onClick={(e) => { setPrompt("¿Qué hoteles hay en Salento?") }}>
-                  ¿Qué hoteles hay en Salento?
+                <button onClick={(e) => { setPrompt("5 cosas para hacer en Filandia") }}>
+                  5 cosas para hacer en Filandia
                 </button>
-                <button onClick={(e) => { setPrompt("¿Que gastronomia hay en Pereira?") }}>
-                  ¿Que gastronomia hay en Pereira?
+                <button onClick={(e) => { setPrompt("¿Que comer en Santa Rosa de Cabal?") }}>
+                  ¿Que comer en Santa Rosa de Cabal? 
                 </button>
-                <button onClick={(e) => { setPrompt("¿Qué puedo hacer en Quindio?") }}>
-                  ¿Qué puedo hacer en Quindio?
+                <button onClick={(e) => { setPrompt("¿Como llegar al Valle del Cocora?") }}>
+                  ¿Como llegar al Valle del Cocora?
                 </button>
               </div>
 
             </div>
-          ) :
+          </div>
 
-            <div className='chat-messages'>
-              {
-                chats.length >= 1 && (
-                  chats.map((c) => {
-                    return (
-                      c.role === "assistant" ? (
-                        <div className='chat-asistent'>
-                          <img src={logo} width={20} height={20}></img>
-                          <span><LinkRenderer text={c.content} /></span>
-                        </div>
-                      ) :
-                        <div className='chat-user'>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
-                          </svg>
-                          <span>{c.content}</span>
-                        </div>
-                    )
-                  })
-                )
-              }
-            </div>
-          }
-        </div>
+        ) :
+
+          <div className='chat-messages'>
+            {
+              chats.length >= 1 && (
+                chats.map((c) => {
+                  return (
+                    c.role === "assistant" ? (
+                      <div className='chat-asistent'>
+                        <img src={logo} width={20} height={20}></img>
+                        <span><LinkRenderer text={c.content} /></span>
+                      </div>
+                    ) :
+                      <div className='chat-user'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                        </svg>
+                        <span>{c.content}</span>
+                      </div>
+                  )
+                })
+              )
+            }
+          </div>
+        }
         <div className='chat-input'>
           <input type='text'
             placeholder='Préguntale a Citybot...'
