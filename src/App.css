@@ -131,8 +131,8 @@ body {
     width: 90%;
     height: 80vh;
     background-color: white;
-    word-break: break-all;
-    white-space: break-spaces;
+    /* word-break: break-all;
+    white-space: break-spaces; */
   }
 
   .chat-baner {

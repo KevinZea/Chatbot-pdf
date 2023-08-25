@@ -19,7 +19,7 @@ export async function createChat(question) {
             Importante: si no esta la informacion que necesitas en el siguiente contexto
             no respondas la pregunta,
             Nota: si te preguntan en un idioma respondes con el mismo
-            Importante: No agregues informacion extra que no esta en el conexto,
+            Importante: No agregues informacion extra que no esta en el contexto,
             Importante: si no puedes responder la pregunta basado en el contexto
             vas a decir Lo siento no tengo conocimiento en tu informacion,
             Nota: si te saludan solo responde el saludo
@@ -54,6 +54,7 @@ export async function createChat(question) {
         const message = completion.data.choices[0].message
         arrayMessages.push(message)
         // console.log(arrayMessages)
+        // console.log(message.content)
         return message
 
     } catch (error) {
