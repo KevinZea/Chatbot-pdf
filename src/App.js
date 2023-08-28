@@ -61,6 +61,7 @@ function App() {
               </span>
               <p>
                 Tu asistente virtual de viajes.
+                <br></br>
                 Aquí encontrarás recomendaciones sobre hotelería, gastronomía, destinos y mucho más.
                 También puedes ingresar a nuestra guia web <a href='https://citybot.info/' target='_blank'>https://citybot.info/</a>
                 <br></br>

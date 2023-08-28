@@ -43,7 +43,6 @@ const AddToHomeScreenButton = () => {
             X
           </button>
           <p>Agrega Citybot 
-          <img src={logo} alt="" srcset="" width={20} height={20}/>
           a tu pantalla de inicio.
           </p>
           <button className="add-button" onClick={handleClick}>
