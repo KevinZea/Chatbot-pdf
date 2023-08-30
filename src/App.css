@@ -70,6 +70,7 @@ body {
   display: flex;
   margin: 10px;
   align-items: start;
+  white-space:pre-line;
 }
 
 .chat-asistent span {
@@ -79,7 +80,8 @@ body {
   border-radius: 10px;
   /* text-overflow: scroll; */
   margin-left: 10px;
-  white-space: pre-line;
+  word-break: break-word;
+  white-space:break-spaces;
 }
 
 .chat-user {
@@ -91,12 +93,13 @@ body {
 }
 
 .chat-user span {
-  width: 90%;
+  width: 100%;
   padding: 5px;
   border-radius: 10px;
   color: black;
   margin-left: 10px;
   font-size: 16px;
+  /* text-overflow:hidden; */
 }
 
 .chat-messages {
@@ -128,11 +131,12 @@ body {
   }
 
   .chat-messages {
-    width: 90%;
+    width: 95%;
     height: 80vh;
     background-color: white;
-    /* word-break: break-all;
-    white-space: break-spaces; */
+    word-break:break-word;
+    /* text-overflow:ellipsis; */
+    /* white-space: break-spaces; */
   }
 
   .chat-baner {
