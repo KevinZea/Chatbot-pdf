@@ -51,10 +51,10 @@ function App() {
       <div className='chat'>
         {chats.length < 1 ? (
           <div className='chat-baner'>
-            <div className='chat-baner-icon'>
+            {/* <div className='chat-baner-icon'>
               <img src={logo} width={30} height={30}></img>
 
-            </div>
+            </div> */}
             <div className='chat-baner-info'>
               <span>
                 ¡Bienvenido a CityBot!
@@ -62,11 +62,12 @@ function App() {
               <p>
                 Tu asistente virtual de viajes.
                 <br></br>
-                Aquí encontrarás recomendaciones sobre hotelería, gastronomía, destinos y mucho más.
-                También puedes ingresar a nuestra guia web <a href='https://citybot.info/' target='_blank'>https://citybot.info/</a>
+                Aquí encontrarás recomendaciones sobre hotelería, gastronomía y servicios turísticos del eje cafetero.
+                <br></br>
+                También puedes ingresar a nuestra guia web <a href='https://citybot.info/' target='_blank'>citybot</a>
                 <br></br>
                 <br></br>
-                Recuerda hacer preguntas de manera exacta e indicando siempre el destino.
+                Para hacer buen uso del chatbot, recuerda hacer preguntas de manera exacta e indicando siempre el destino.
                 <br></br>
                 Puedes iniciar una conversación o probar los siguientes ejemplos:
               </p>

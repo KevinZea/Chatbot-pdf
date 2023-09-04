@@ -42,9 +42,11 @@ const AddToHomeScreenButton = () => {
           <button className="close-button" onClick={handleClose}>
             X
           </button>
-          <p>Agrega Citybot 
-          a tu pantalla de inicio.
-          </p>
+          <div className='popup-text'>
+            <p>Agrega Citybot
+              a tu pantalla de inicio.
+            </p>
+          </div>
           <button className="add-button" onClick={handleClick}>
             Agregar
           </button>
