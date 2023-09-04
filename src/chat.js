@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
-const apikey = "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"
+const apikey = process.env.REACT_APP_API_KEY
 const embeddingsArray = require('./doc.json')
 const configuration = new Configuration({
     apiKey: apikey,

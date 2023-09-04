@@ -44,7 +44,7 @@ body {
 
 .chat-baner {
   display: flex;
-  background-color: #fdfcfc;
+  background-color: #fafafa;
   justify-content: center;
   margin-top: 20px;
 }
@@ -54,13 +54,13 @@ body {
 }
 
 .chat-baner-info {
-  height: max-content;
+  height: 430px;
   margin: 10px;
   font-size: 18px;
   padding-left: 50px;
   padding-right: 30px;
   font-size: 14px;
-  background-color: #f0f0f0;
+  background-color: #fafafa;
 }
 
 .chat-baner-info span {
@@ -87,7 +87,6 @@ body {
   margin: 10px;
   align-items: start;
   white-space: pre-line;
-  background-color: #e6e6e6;
 }
 
 .chat-asistent span {
@@ -106,6 +105,7 @@ body {
   display: flex;
   margin: 10px;
   align-items: start;
+  background-color: #fafafa;
 
 }
 
@@ -175,8 +175,5 @@ body {
     background-color: white;
   }
 
-  .navbar {
-    justify-content: start;
-    margin-left: 20px;
-  }
+  
 }
