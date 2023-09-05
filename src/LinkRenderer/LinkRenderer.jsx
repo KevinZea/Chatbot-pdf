@@ -3,34 +3,22 @@ import './LinkRenderer.css'
 
 const LinkRenderer = ({ text }) => {
   const renderTextWithLinks = () => {
-    const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?|www\.[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/gi;
+    const regex = /(?:https?|ftp):\/\/[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?(?:\.|\b)|www\.[\w-]+(?:\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?(?:\.|\b)/gi;
     let arrayText = []
     const parts = text.split('\n');
       for (let parte of parts){
           parte = parte + '\n'
           let aux = parte.split(' ')
           for (let a of aux){
+            if (a.match(regex) && a[a.length-1] === '.') {
+              a = a.slice(0, -1)
+            }
             arrayText.push(a)
           }
       }
-    // if (text.includes("\n")){
-    //   const parts = text.split('\n');
-    //   for (let parte of parts){
-    //       parte = parte + '\n'
-    //       let aux = parte.split(' ')
-    //       for (let a of aux){
-    //         arrayText.push(a)
-    //       }
-    //   }
-    // }
-    // else {
-    //   arrayText = text.split(' ')
-    // }
 
     return arrayText.map((part, index) => {
-
-      if (regex.test(part)) {
-        part = part.replace(/"/g, '')
+      if (part.match(regex)) {
         return (
           <a key={index} href={part} target="_blank" rel="noopener noreferrer" className='enlaces'>
             Click {"\n"}

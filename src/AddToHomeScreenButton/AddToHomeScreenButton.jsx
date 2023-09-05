@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './AddToHomeScreenButton.css';
-import logo from '../resources/logo.png'
 
 const AddToHomeScreenButton = () => {
   const [prompt, setPrompt] = useState(null);
