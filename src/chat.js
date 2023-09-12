@@ -11,20 +11,7 @@ let arrayMessages = []
 export async function createChat(question) {
     try {
         let arrayContext = await searchReviews(question)
-        let context = `
-            Eres un asesor virtual de turismo (multi-lingue)
-            Responde la siguiente pregunta basado solo en el siguiente contexto
-            y respondiendo con toda la informacion de contacto que haya
-            de manera organizada
-            Importante: si no esta la informacion que necesitas en el siguiente contexto
-            no respondas la pregunta,
-            Nota: si te preguntan en un idioma respondes con el mismo
-            Importante: No agregues informacion extra que no esta en el contexto,
-            Importante: si no puedes responder la pregunta basado en el contexto
-            vas a decir Lo siento no tengo conocimiento en tu informacion,
-            Nota: si te saludan solo responde el saludo
-            
-        `
+        let context = 'Actuar como directorio virtual de la empresa "Citybot". Debe ofrecer información sólo si está explícitamente disponible para usted. Apto para Colombia.\nNo brinde información sobre ningún otro tema, si el usuario solicita información sobre cualquier otro tema no relacionado con la ciudad de Salento, Colombia, debe amablemente responder "No puedo brindar información al respecto". Debe responder a datos estrictamente conocidos y decir "No sé" si no conoce un producto, servicio o empresa específica. Debe responder cada vez en el mismo idioma que la última pregunta de idioma del usuario. No mientas y sé respetuoso y servil en todo momento.'
 
         for (let obj of arrayContext) {
             context = context.concat(obj.text + "\n")
