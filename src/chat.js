@@ -1,5 +1,6 @@
-const { Configuration, OpenAIApi } = require("openai");
 const apikey = process.env.REACT_APP_API_KEY
+
+const { Configuration, OpenAIApi, } = require("openai");
 const embeddingsArray = require('./doc.json')
 const configuration = new Configuration({
     apiKey: apikey,
@@ -11,37 +12,36 @@ let arrayMessages = []
 export async function createChat(question) {
     try {
         let arrayContext = await searchReviews(question)
-        let context = 'Actuar como directorio virtual de la empresa "Citybot". Debe ofrecer información sólo si está explícitamente disponible para usted. Apto para Colombia.\nNo brinde información sobre ningún otro tema, si el usuario solicita información sobre cualquier otro tema no relacionado con departamentos Colombia, debe amablemente responder "No puedo brindar información al respecto". Debe responder a datos estrictamente conocidos y decir "No sé" si no conoce un producto, servicio o empresa específica. Debe responder cada vez en el mismo idioma que la última pregunta de idioma del usuario. No mientas y sé respetuoso y servil en todo momento.'
+        let context = 'Actuar como directorio virtual llamado "Dani Pereira Bot". Debe ofrecer toda la información sólo si está explícitamente disponible para usted. Apto para Colombia.\nNo brinde información sobre ningún otro tema, si el usuario solicita información sobre cualquier otro tema no relacionado con la ciudad de Pereira, Colombia, debe amablemente responder "No puedo brindar información al respecto". Debe responder a datos estrictamente conocidos y decir "No sé" si no conoce un producto, servicio o empresa específica. Debe responder cada vez en el mismo idioma que la última pregunta de idioma del usuario. No mientas y sé respetuoso y servil en todo momento. \n'
 
         for (let obj of arrayContext) {
             context = context.concat(obj.text + "\n")
         }
-
+        // console.log(context)
         let system = { role: "system", content: context }
         let user = { role: "user", content: question }
 
-        for (let i = 0; i<arrayMessages.length; i++){
-            if(arrayMessages[i].role === "system"){
-                arrayMessages.splice(i, 1)
+        //elimina elcontexto duplicado y deja los ultimos dos recientes
+        for (let i = 0; i < arrayMessages.length; i++) {
+            if (arrayMessages[i].role === "system") {
+                const duplicados = arrayMessages.filter((item) => item.role === "system")
+                if(duplicados.length >= 2){
+                    arrayMessages.shift()
+                }
             }
         }
 
-        arrayMessages.push(system)
+        arrayMessages.unshift(system)
         arrayMessages.push(user)
-        // for(let c of arrayMessages){
-        //     if (c.role == "system") console.log(c.content)
-        // }
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo', //-0613
             messages: arrayMessages,
             temperature: 0,
-
-
         });
         const message = completion.data.choices[0].message
         arrayMessages.push(message)
-        // console.log(arrayMessages)
         // console.log(message.content)
+        // console.log(arrayMessages)
         return message
 
     } catch (error) {
@@ -86,4 +86,3 @@ async function searchReviews(question, n = 5) {
     const res = embeddingsArray.sort((a, b) => b.similarity - a.similarity).slice(0, n);
     return res;
 }
-
