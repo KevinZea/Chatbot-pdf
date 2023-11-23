@@ -77,7 +77,7 @@ async function getEmbedding(text) {
     return response.data.data[0].embedding;
 }
 // responde con un arreglo los resultados mas parecidos
-async function searchReviews(question, n = 5) {
+async function searchReviews(question, n = 3) {
 
     const embedding = await getEmbedding(question);
     embeddingsArray.forEach(obj => {
